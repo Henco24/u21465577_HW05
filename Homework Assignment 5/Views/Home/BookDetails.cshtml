@@ -1,0 +1,39 @@
+﻿
+@model List<Homework_Assignment_5.ViewModels.BorrowsViewModel>
+@using Homework_Assignment_5.ViewModels;
+
+
+
+
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Type</th>
+        <th>Pagecount</th>
+    </tr>
+    @foreach (BorrowsViewModel borrow in Model )
+    {
+        <tr>
+            <td>@borrow.BorrowID</td>
+            <td>@borrow.TakenDate</td>
+            <td>@borrow.BroughtDate</td>
+            <td>@borrow.Student.Sname</td>
+            <td>
+                @using (Html.BeginForm("FuzzySearch", "Home", FormMethod.Post, new { style = "width:100%" }))
+                {
+
+                    <button type="submit"> View <span> style="background-color:Blue" aria-hidden="true"></span></button>
+                }
+            </td>
+
+            <td>
+                <a href="@Url.Action("StudentDetails", "Home", new { id = borrow.BookID })"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+    }
+</table>
+</div>
+

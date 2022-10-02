@@ -1,0 +1,62 @@
+﻿@model List<Homework_Assignment_5.ViewModels.StudentViewModel>
+@using Homework_Assignment_5.ViewModels;
+@{
+    ViewBag.Title = "StudentDetails";
+}
+
+<h2>Student Details</h2>
+
+<br />
+
+@using (Html.BeginForm("StudentDetails", "Home", FormMethod.Post, new { style = "width:100%" }))
+{
+
+    //Book name search
+    <input type="text" style="width:30%;max-width:none; display:inline" name="searchText" class="form-control" placeholder="Search student name" />
+    //Book Type search
+    <input type="text" style="width:30%;max-width:none; display:inline" name="searchText2" class="form-control" placeholder="Select a class" />
+    // Author name
+
+
+
+    <button type="submit" style="background-color:lawngreen">Search</button>
+    <button type="submit" style="background-color:red"> Clear </button>
+
+
+}
+
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Class</th>
+        <th>Points</th>
+        <th <input type="button"></th>
+
+    </tr>
+    @foreach (StudentViewModel student in Model)
+    {
+        <tr>
+            <td>@student.Sname</td>
+            <td>@student.Ssurname</td>
+            <td>@student.Class</td>
+            <td>@student.Spoint</td>
+            <td> </td>
+
+
+            <td>
+                @using (Html.BeginForm("BookDetails", "Home", FormMethod.Post, new { style = "width:100%" }))
+                {
+
+                    <button type="submit" style="background-color:lightblue"> View</button>
+                }
+            </td>
+
+
+        </tr>
+    }
+</table>
+</div>
+

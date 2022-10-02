@@ -1,0 +1,90 @@
+﻿@model List<Homework_Assignment_5.ViewModels.BookViewModel>
+@using Homework_Assignment_5.ViewModels;
+
+@{
+    ViewBag.Title = "Books";
+}
+
+
+<style type="text/css">
+    .crudContainer {
+        position: absolute;
+        width: 75%;
+    }
+
+    .roundAddButton {
+    }
+
+    .plainAddButton {
+        position: absolute;
+        top: 16px;
+        right: 0;
+        font-size: 32px;
+    }
+</style>
+
+
+
+
+
+<div class="row crudContainer">
+
+    <h1>Books</h1>
+
+    <br />
+
+    @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { style = "width:100%" }))
+    {
+
+        //Book name search
+        <input type="text" style="width:30%;max-width:none; display:inline" name="searchText" class="form-control" placeholder="Book Name"  />
+        //Book Type search
+        <input type="text" style="width:20%;max-width:none; display:inline" name="searchText2" class="form-control" placeholder="Select a type"  />
+        // Author name
+        <input type="text" style="width:20%;max-width:none; display:inline" name="searchText3" class="form-control" placeholder="Select a Author"  />
+
+
+        <button type="submit" style="background-color:lawngreen">Search</button>
+        <button type="submit" style="background-color:red" > Clear </button>
+
+
+    }
+
+
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Type</th>
+            <th>Pagecount</th>
+            <th>Points</th>
+            <th>Status</th>
+            <th> </th>
+
+        </tr>
+        @foreach (BookViewModel book in Model)
+        {
+    <tr>
+        <td name="bookid">@book.BookID</td>
+        <td name="bookname">@book.BookName</td>
+        <td>@book.Author.Aname</td>
+        <td>@book.Type.Tname</td>
+        <td>@book.Page</td>
+        <td>@book.Point</td>
+        <td> </td>
+        
+
+         <td>
+            @using (Html.BeginForm("BookDetails", "Home", FormMethod.Post, new { style = "width:100%" }))
+            {
+
+                <button type="submit" style="background-color:lightblue"> View</button>
+            }
+        </td>
+
+
+    </tr>
+        }
+    </table>
+</div>
